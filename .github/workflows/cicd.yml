@@ -136,7 +136,8 @@ jobs:
 
       - name: Build package 
         run: |
-          pwd
+          echo "Current dir: $(pwd)"
+          ls -la
           python setup.py sdist bdist_wheel
 
       - name: Find and Set Package File Path
