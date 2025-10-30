@@ -12,4 +12,4 @@ httpx = "==0.21.1"
 [dev-packages]
 
 [requires]
-python_version = "3.9.2"
+python_version = "3.9"
