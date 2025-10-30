@@ -61,12 +61,13 @@ jobs:
      
       - name: Install dependencies
         #working-directory:    #deployment
+        #pipenv shell don't work
         run: |
             pwd
             python -m pip install --upgrade pip
             pip install pipenv
             pipenv install --dev
-            pipenv shell
+            
             
 
       - name: Set PYTHONPATH
@@ -75,12 +76,12 @@ jobs:
       - name: Lint with flake8
         #working-directory: deployment
         run: |
-            flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-            flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          pipenv run  flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          pipenv run  flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
       - name: Test with pytest
         #working-directory: deployment
-        run: pytest --cov=pyimagesearch --junitxml=junit_result.xml --cov-report=xml --cov-report=html tests/
+        run: pipenv run pytest --cov=pyimagesearch --junitxml=junit_result.xml --cov-report=xml --cov-report=html tests/
 
       - name: Upload test coverage xml
         uses: actions/upload-artifact@v4
