@@ -10,6 +10,8 @@ sqlalchemy = "==1.4.23"
 httpx = "==0.21.1"
 
 [dev-packages]
+flake8 = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.9"
