@@ -146,7 +146,7 @@ jobs:
 
       - name: Create or Get Release
         id: create_release
-        uses: actions/github-script@v3        
+        uses: actions/github-script@v3 
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -171,14 +171,14 @@ jobs:
               core.setOutput('release_id', release.id);
 
       - name: Upload package to GitHub Release
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ env.PACKAGE_FILE }}
           asset_name: ${{ env.PACKAGE_NAME }}
           asset_content_type: application/zip
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate Changelog
         run: |
