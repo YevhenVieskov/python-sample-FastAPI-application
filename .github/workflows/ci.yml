@@ -19,7 +19,7 @@ jobs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
       - id: skip_check
-        uses: fkirc/skip-duplicate-actions@v3.4.1
+        uses: fkirc/skip-duplicate-actions@v5.3.0
         with:
           concurrent_skipping: 'never'
           paths_ignore: '["README.md"]'
@@ -41,12 +41,12 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Install Task
-        uses: arduino/setup-task@v1
+        uses: arduino/setup-task@v2
 
       - name: Install dependencies
         working-directory: deployment
@@ -56,7 +56,7 @@ jobs:
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
       - name: Lint with flake8
-        working-directory: deployment        
+        working-directory: deployment
         run: task lint
 
       - name: Test with pytest
@@ -64,7 +64,7 @@ jobs:
         run: task test
 
       - name: Upload test coverage xml
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
           name: test-results
@@ -73,7 +73,7 @@ jobs:
             coverage.xml
 
       - name: Upload test coverage html
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
           name: htmlcov
@@ -85,7 +85,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: test-results
           path: artifacts
