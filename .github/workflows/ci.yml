@@ -12,9 +12,9 @@ on:
   #  branches:
   #    - master
 
-defaults:
-  run:
-    working-directory:  $GITHUB_WORKSPACE 
+#defaults:
+#  run:
+#    working-directory:  $GITHUB_WORKSPACE 
 
 
 jobs:
