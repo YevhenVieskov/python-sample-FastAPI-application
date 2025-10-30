@@ -58,13 +58,9 @@ jobs:
           key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-pipenv-
-
-      - name: Install Task
-        uses: arduino/setup-task@v2
-
+     
       - name: Install dependencies
         #working-directory:    #deployment
-        #run: task deps
         run: |
             pwd
             python -m pip install --upgrade pip
@@ -77,11 +73,13 @@ jobs:
 
       - name: Lint with flake8
         #working-directory: deployment
-        run: task lint
+        run: |
+            flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+            flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
       - name: Test with pytest
         #working-directory: deployment
-        run: task test
+        run: pytest --cov=pyimagesearch --junitxml=junit_result.xml --cov-report=xml --cov-report=html tests/
 
       - name: Upload test coverage xml
         uses: actions/upload-artifact@v4
