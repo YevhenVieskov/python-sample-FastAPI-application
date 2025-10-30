@@ -66,7 +66,7 @@ jobs:
             pwd
             python -m pip install --upgrade pip
             pip install pipenv
-            pipenv install --dev            
+            pipenv install --dev
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
@@ -123,6 +123,13 @@ jobs:
     permissions: write-all
 
     steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
       - name: Set up Python runtime
         uses: actions/setup-python@v5
         with:
