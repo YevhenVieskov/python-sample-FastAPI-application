@@ -23,7 +23,7 @@ jobs:
         with:
           concurrent_skipping: 'never'
           paths_ignore: '["README.md"]'
-          paths: '["pyimagesearch/**", "docs/**", ".github/workflows/ci.yml", ".github/workflows/cd.yml", ".github/workflows/Taskfile.yml", , "setup.py"]'
+          paths: '["pyimagesearch/**", "docs/**", ".github/workflows/ci.yml", ".github/workflows/cd.yml", ".github/workflows/Taskfile.yml", "setup.py"]'
 
   build-and-test:
     needs: pre_job
