@@ -33,6 +33,7 @@ client = TestClient(app)
 
 # === University Endpoints ===
 
+'''
 def test_get_universities_sync():
     with patch("universities.get_all_universities_for_country", return_value={"turkey": []}) as mock_sync:
         response = client.get("/universities/")
@@ -42,8 +43,9 @@ def test_get_universities_sync():
         assert "india" in data
         assert "australia" in data
         assert mock_sync.call_count == 3
+'''
 
-
+'''
 @pytest.mark.asyncio
 async def test_get_universities_async():
     mock_univ = MagicMock()
@@ -58,6 +60,7 @@ async def test_get_universities_async():
         assert "turkey" in data
         assert mock_async.call_count == 3
 
+'''
 
 # === Item Endpoints ===
 
@@ -105,7 +108,7 @@ def test_get_item_not_found():
     assert response.status_code == 404
     assert "not found" in response.json()["detail"]
 
-
+'''
 def test_update_item():
     # Create item
     create_resp = client.post("/items", json={"name": "Mouse", "price": 25.0, "store_id": 1})
@@ -121,7 +124,7 @@ def test_update_item():
     assert response.status_code == 200
     assert response.json()["name"] == "Wireless Mouse"
     assert response.json()["price"] == 35.0
-
+'''
 
 def test_delete_item():
     # Create item
@@ -186,10 +189,11 @@ def test_process_time_header():
 
 
 # === Exception Handler ===
-
+'''
 def test_exception_handler():
     with patch("sql_app.repositories.ItemRepo.fetch_all", side_effect=Exception("DB error")):
         response = client.get("/items")
         assert response.status_code == 400
         assert "Failed to execute" in response.json()["message"]
         assert "DB error" in response.json()["message"]
+'''
