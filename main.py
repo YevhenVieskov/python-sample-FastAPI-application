@@ -181,3 +181,5 @@ async def get_universities_async() -> dict:
 
 if __name__ == "__main__":
     uvicorn.run("main:app", port=9000, reload=True)
+    
+#comment
