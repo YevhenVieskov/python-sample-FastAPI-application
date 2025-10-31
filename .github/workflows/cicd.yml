@@ -207,9 +207,7 @@ jobs:
           sudo mv git-chglog /usr/local/bin/
           git-chglog --version
       
-      - name: Generate Changelog
-        run: |
-              git-chglog -o CHANGELOG.txt --template .chglog/CHANGELOG-release.tpl.md $(git describe --tags $(git rev-list --tags --max-count=1))
+      
       
       - name: Update Release with Changelog
         uses: actions/github-script@v7

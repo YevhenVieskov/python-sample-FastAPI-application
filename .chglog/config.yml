@@ -1,0 +1,35 @@
+# .chglog/config.yml
+style: github
+template: CHANGELOG.tpl.md
+info:
+  title: Changelog
+  repository_url: https://github.com/YevhenVieskov/python-sample-FastAPI-application
+options:
+  commits:
+    filters:
+      Type:
+        - feat
+        - fix
+        - docs
+        - refactor
+        - perf
+        - test
+        - chore
+  commit_groups:
+    title_maps:
+      feat: ✨ Features
+      fix: 🐛 Bug Fixes
+      docs: 📝 Documentation
+      refactor: ♻️ Refactors
+      perf: ⚡ Performance Improvements
+      test: ✅ Tests
+      chore: 🔧 Chores
+  header:
+    pattern: '^(\w*)(?:\(([\w\-]+)\))?: (.*)$'
+    pattern_maps:
+      - Type
+      - Scope
+      - Subject
+  notes:
+    keywords:
+      - BREAKING CHANGE
