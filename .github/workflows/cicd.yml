@@ -219,7 +219,7 @@ jobs:
               const release_id = '${{ steps.create_release.outputs.release_id }}';
               const fs = require('fs');
               const changelog = fs.readFileSync('CHANGELOG.txt', 'utf8');
-              await github.repos.updateRelease({
+              await github.rest.repos.updateRelease({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 release_id: release_id,
