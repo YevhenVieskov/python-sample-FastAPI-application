@@ -168,13 +168,13 @@ jobs:
                  return;
               }
 
-              const { data: releases } = await github.repos.listReleases({
+              const { data: releases } = await github.rest.repos.listReleases({
                 owner: context.repo.owner,
                 repo: context.repo.repo
               });
               let release = releases.find(r => r.tag_name === context.ref.replace('refs/tags/', ''));
               if (!release) {
-                const response = await github.repos.createRelease({
+                const response = await github.rest.repos.createRelease({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   tag_name: context.ref.replace('refs/tags/', ''),
